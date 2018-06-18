@@ -33,10 +33,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect to mongodb
-mongoose.connect(keys.mongodb.dbURI, () => {
-    console.log('connected to mongodb');
-});
-
+if(process.env.MONGODB_URI)
+{
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(keys.mongodb.dbURI, () => {
+      console.log('connected to mongodb');
+  });
+}
 // Requiring our models for syncing
 var db = require("./models");
 
