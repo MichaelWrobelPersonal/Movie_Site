@@ -11,7 +11,8 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+if (!process.env.COOKIE_KEY)
+  const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
@@ -20,9 +21,18 @@ const passport = require('passport');
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+var keys_ = "";
+if (process.env.COOKIE_KEY)
+{
+   keys_ = 'keys.session.cookieKey'
+}
+else
+{
+   keys_ = process.env.COOKIE_KEY
+}
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: ['keys.session.cookieKey']
+    keys: [keys_]
 }));
 
 // Set view engine
