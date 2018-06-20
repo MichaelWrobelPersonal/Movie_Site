@@ -45,9 +45,10 @@ app.use(passport.session());
 // Connect to mongodb
 if(process.env.MONGODB_URI)
 {
-  mongoose.connect(process.env.MONGODB_URI);
+  mongoose.connect(process.env.MONGODB_URL);
 } else {
-  const keys = require('./config/keys');
+  try{ const keys = require('./config/keys'); }
+  catch{ /*m\nothing to do */ }
   mongoose.connect(keys.mongodb.dbURI, () => {
       console.log('connected to mongodb');
   });
