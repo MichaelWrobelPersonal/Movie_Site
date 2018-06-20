@@ -43,7 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Connect to mongodb
-if(process.env.MONGODB_URI)
+if(process.env.MONGODB_URL)
 {
   mongoose.connect(process.env.MONGODB_URL);
 } else {
