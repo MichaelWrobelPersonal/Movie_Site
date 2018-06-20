@@ -13,12 +13,24 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+var clientID = '';
+var clientSecret = '';
+if (process.env.GOOGLE_ID)
+    clientID = process.env.GOOGLE_ID;
+else
+    clientID = keys.google.clientID;
+
+if (process.env.GOOGLE_SECRET)
+    clientSecret = process.env.GOOGLE_SECRET;
+else    
+    clientSecret = keys.google.clientSecret;
+
 passport.use(
     new GoogleStrategy({
         // Options for the google strategy
         callbackURL: '/auth/google/redirect',
-        clientID: keys.google.clientID,
-        clientSecret: keys.google.clientSecret
+        clientID: clientID,
+        clientSecret: clientSecret
     }, (accessToken, refreshToken, profile, done) => {
         // Passport callback function
         console.log('passport callback function fired');
