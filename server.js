@@ -11,8 +11,8 @@ const authRoutes = require('./routes/auth-routes');
 const profileRoutes = require('./routes/profile-routes');
 const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
-if (!process.env.COOKIE_KEY)
-  const keys = require('./config/keys');
+const cookie = require('./config/cookie');
+
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 
@@ -24,11 +24,11 @@ var PORT = process.env.PORT || 3000;
 var keys_ = "";
 if (process.env.COOKIE_KEY)
 {
-   keys_ = 'keys.session.cookieKey'
-}
+  keys_ = process.env.COOKIE_KEY
+} 
 else
 {
-   keys_ = process.env.COOKIE_KEY
+  keys_ = 'cookie.session.cookieKey'
 }
 app.use(cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
@@ -47,6 +47,7 @@ if(process.env.MONGODB_URI)
 {
   mongoose.connect(process.env.MONGODB_URI);
 } else {
+  const keys = require('./config/keys');
   mongoose.connect(keys.mongodb.dbURI, () => {
       console.log('connected to mongodb');
   });
