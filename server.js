@@ -48,7 +48,7 @@ if(process.env.MONGODB_URI)
   mongoose.connect(process.env.MONGODB_URL);
 } else {
   try{ const keys = require('./config/keys'); }
-  catch{ /*m\nothing to do */ }
+  catch(e) { /*nothing to do */ }
   mongoose.connect(keys.mongodb.dbURI, () => {
       console.log('connected to mongodb');
   });
