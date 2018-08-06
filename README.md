@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Next Movie Site
 
 A site about movie reviews of some of your most famous movies.  For those that love watching a good movie at home.
@@ -31,4 +32,9 @@ It ties in a list of reviewed movies with an interface that lets the user stream
 # Contributons
 
 This site is part of our personal portfolios and as such direct contributions to the project other than its authors are not accepted an this time.  If you have any suggestions pleaae direct them to me via email (michaelrwrobel@sbcglobal.net) and I will pass it on for consideration by us all.
+=======
+# Movie_Site
+
+This site is a site for Movie Lovers.
+>>>>>>> 9201a40e341dcf8d96e183827809def91a699bc2
 
